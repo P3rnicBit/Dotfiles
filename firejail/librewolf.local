@@ -1,0 +1,2 @@
+whitelist ${HOME}/Pictures
+noblacklist ${HOME}/Pictures

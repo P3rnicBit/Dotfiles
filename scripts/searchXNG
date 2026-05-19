@@ -1,0 +1,5 @@
+#!/bin/bash
+export SEARXNG_SETTINGS_PATH="/etc/searxng/settings.yml"
+
+# Execute the python app as the searxng user directly
+sudo -u searxng python3 /usr/local/searxng/searxng-src/searx/webapp.py

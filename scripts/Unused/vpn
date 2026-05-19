@@ -1,0 +1,9 @@
+# #!/bin/bash
+# return=$(/home/LukPer/.config/scripts/CheckVPNStatus.sh) #sets the $return as the output of the script
+# if [[ "$return" == "✓ VPN" ]]; then #checks if $return is "✓ Connected" 
+#  sudo pkill protonvpn #kills the openvpn process, also add it to sudo using "EDITOR=nano sudo visudo"
+#  elif [[ "$return" == "✗ VPN" ]]; then
+#  /home/LukPer/.config/scripts/VPNConnect.sh #connects to the vpn
+#  else
+#  echo "error"
+#  fi

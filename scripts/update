@@ -1,0 +1,7 @@
+#!/bin/bash
+hyprctl dispatch exec "[workspace 9] kitty zsh -c 'paru -Syu'"
+#hyprctl dispatch exec = (self explanatory)
+#workspace 5 = (self explanatory)
+#kitty -- = Prevents from thinking -Syu belongs to kitty instead of paru
+#sh -c = this launches a subshell, it tells to read the following string as a sequence of commands 
+#exec bash = this keeps the window alive after it has been executed- 
