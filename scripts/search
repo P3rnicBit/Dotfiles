@@ -1,0 +1,80 @@
+#!/bin/bash
+# Usage: ./script.sh <type: d|f> <base_directory> <searched_name> <max_results (optional)>
+type_flag="${1,,}" # Convert to lowercase
+base_dir="$2" #Second input, the base dir
+search_name="$3" #Third input, the name of the file or directory to search for
+declare -i search_count_total=$4 #Initialize search_count_total as an integer variable with a value of 0. This variable will be used to keep track of the total number of search results found.
+declare -i search_count_current=0 #Initialize search_count as an integer variable with a value of 0. This variable will be used to count the number of search results found.
+
+function writeOutput(){
+            if [[ "$type_flag" == "d" ]]; then
+          echo "Found $search_count_current directories."
+       elif [[ "$type_flag" == "f" ]]; then
+            echo "Found $search_count_current files."
+       fi
+}
+
+function printPath(){
+    echo "$1"
+    sleep 0.005
+}
+
+if [[ $# -lt 3 ]]; then
+    echo "Usage: $0 <type: d|f> <base_directory> <search_name> <max_results (optional)>"
+    exit 1
+fi
+#Checks if the number of arguments is less than 3. If it is, it prints a usage message and exits. This ensures that the user provides all necessary arguments when running the script.
+#Each <> is an argument, and each one is counted, explaining the three in the IF statement.
+#0$ just pastes the current script name
+#This is basically a help message for the user
+
+if [ "$base_dir" = "~" ]; then
+    base_dir="$HOME"
+fi
+
+if [[ "$base_dir" == "~/"* ]]; then
+    base_dir="$HOME/${base_dir:2}"
+fi
+#${base_dir:2}, checks if the first two characters of base_dir are "~/", if so, 
+#replaces it with the value of $HOME/ followed by the rest of the path after "~/"
+
+if [[ "$base_dir" == "config"  || "$base_dir" == "conf" ]]; then
+    base_dir="$HOME/.config"
+fi
+
+if [[ "$type_flag" != "d" && "$type_flag" != "f" ]]; then #Checks type_flag to see if it is valid
+    echo "Invalid type. Use 'd' for directory or 'f' for file."
+    exit 1 #Exits UNSUCCESSFULLY
+fi
+#Checks for the base directory and type flag, similar to the previous scripts, but now it also checks if the type flag is valid (either 'd' for directories or 'f' for files). If the checks fail, it prints a usage message and exits.
+
+
+if [[ $search_count_total -gt 0 ]]; then #This checks if the user provided a max results argument, if so, it goes through the loop and writes out the results until the max is met.
+    while IFS= read -r -d '' path; do      
+    printPath "$path"
+     if [[ "$search_count_current" -ge $((search_count_total - 1)) ]]; then #This checks if the current search count meets the max results, then stopping the search.
+          ((search_count_current++))
+           writeOutput  
+           exit 0 #Exits SUCCESSFULLY
+     fi
+            ((search_count_current++))
+    done < <(find "$base_dir" -type "$type_flag" -iname "*$search_name*" -print0 2>/dev/null)  
+    writeOutput  
+
+
+
+elif [[ "$search_count_total" -eq 0 ]]; then #This is the case where the user did not provide a max results argument
+    while IFS= read -r -d '' path; do
+        printPath "$path"
+        ((search_count_current++))
+    done < <(find "$base_dir" -type "$type_flag" -iname "*$search_name*" -print0 2>/dev/null)
+    writeOutput  
+fi
+
+
+# IFS= prevents whitespace trimming, -r disables backslash interpretation, -d '' reads until null character
+#-print0 separates results with null character, process substitution keeps file_count in scope
+#Much better than a FOR loop, as it handles filenames with spaces and special characters correctly. 
+#It also allows us to keep the file_count variable in scope, which is necessary for counting the results.
+#2>/dev/null suppresses error messages, such as "Permission denied" when searching directories without access. 
+#find  prints errors  to stderr, which 2, and the redirection operator >, can redirect to /dev/null, effectively discarding them.

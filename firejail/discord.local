@@ -1,0 +1,12 @@
+# Allow screen sharing via xdg-desktop-portal
+dbus-user.talk org.freedesktop.portal.Desktop
+dbus-user.talk org.freedesktop.portal.ScreenCast
+dbus-user.talk org.freedesktop.portal.Screenshot
+
+# Allow PipeWire socket (the actual video stream)
+noblacklist ${RUNUSER}/pipewire-0
+whitelist ${RUNUSER}/pipewire-0
+
+# Allow mic input from PipeWire
+noblacklist ${RUNUSER}/pulse
+whitelist ${RUNUSER}/pulse

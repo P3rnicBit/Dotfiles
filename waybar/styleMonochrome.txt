@@ -1,0 +1,514 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: Exo2, Roboto, Helvetica, Arial, sans-serif;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: transparent;
+}
+
+window#waybar.hidden {
+    opacity: 1;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+}
+
+#workspaces {
+    /* 1. Define the Left Slant (\) and Right Slant (/) */
+    background-image:
+        linear-gradient(60deg, transparent 20px, #131313 20px),
+        linear-gradient(-60deg, transparent 20px, #131313 20px);
+
+    /* 2. Position them: One on the left, one on the right */
+    background-position: left, right;
+
+    /* 3. Make them meet in the middle (51% ensures they overlap slightly so no gap appears) */
+    background-size: 51% 100%;
+
+    /* 4. CRITICAL: Prevent them from tiling/repeating */
+    background-repeat: no-repeat;
+
+    /* Spacing */
+    padding: 0 20px;
+    /* Extra padding so text doesn't hit the angled sides */
+    margin: 0 5px;
+    color: black;
+    border-radius: 0;
+}
+
+#mode {
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd #window,
+#workspaces,
+
+label:focus {
+    background-color: #000000;
+}
+
+#memory,
+#cpu,
+#temperature,
+#network,
+#pulseaudio,
+#mpris,
+#language,
+#clock,
+#custom-disk,
+#custom-VPNstatus,
+#workspaces button,
+#custom-update,
+#custom-gpu,
+#custom-power {
+    font-size: 1rem;
+    color: #a7a7a7;
+    text-shadow:
+        0 0 1px rgba(207, 207, 207, 0.247),
+        0 0 2px rgba(207, 207, 207, 0.247),
+        0px 0px 3px rgba(207, 207, 207, 0.418);
+    background-color: #131313;
+    padding: 0.2rem 1.1rem;
+    border: none;
+    border-radius: 8px;
+    margin: 0.23rem;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    transition: ease-in-out 0.2s;
+}
+
+#pulseaudio {
+    margin-left: 10px;
+}
+
+window.HDMI-A-1 #cpu {
+    margin-left: 160px;
+}
+
+window.HDMI-A-1 #mpris {
+    margin-right: 10;
+    padding: 5px 17.5px;
+}
+window.DP-2 #custom-VPNstatus{
+    margin-left: 10px ;
+}
+#clock {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+#memory:hover,
+#cpu:hover,
+#temperature:hover,
+#network:hover,
+#pulseaudio:hover,
+#mpris:hover,
+#language:hover,
+#clock:hover,
+#disk:hover,
+#custom-disk:hover,
+#custom-update:hover,
+#custom-VPNstatus:hover {
+    animation-name: NeonFlickerNonActive;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    animation-fill-mode: forwards;
+}
+
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#network.disconnected,
+#pulseaudio.muted,
+#mpris.paused {
+    color: #303030;
+    background-color: #a7a7a7;
+    box-shadow:
+        0 0 1px rgba(207, 207, 207, 0.247),
+        0 0 2px rgba(207, 207, 207, 0.247),
+        0px 0px 3px rgba(207, 207, 207, 0.418);
+    transition: ease-in-out 0.2s;
+
+}
+
+#memory.critical:hover,
+#cpu.critical:hover,
+#temperature.critical:hover,
+#network.disconnected:hover,
+#pulseaudio.muted:hover,
+#mpris.paused:hover {
+    animation-name: NeonFlickerNonActiveBox;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    animation-fill-mode: forwards;
+}
+
+#workspaces button:hover {
+    animation-name: NeonFlickerNonActive;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    animation-fill-mode: forwards;
+}
+
+#workspaces button.active {
+    color: rgb(255, 255, 255);
+    text-shadow:
+        0 0 2px rgba(255, 255, 255, 0.781),
+        0 0 3px rgba(255, 255, 255, 0.692),
+        0px 0px 8px rgba(255, 255, 255, 0.904);
+    transition: ease-in-out 0.2s
+}
+
+#workspaces button.active:hover {
+    animation-name: NeonFlickerActive;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 0.8);
+    animation-fill-mode: forwards;
+}
+
+#workspaces button {
+    background: none;
+}
+
+#backlight {
+    background-color: #90b1b1;
+}
+
+#wireplumber {
+    background-color: #fff0f5;
+    color: #000000;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#tray {
+    background-color: #2980b9;
+}
+
+#tray>.passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state>label {
+    padding: 0 5px;
+}
+
+#keyboard-state>label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+    background-color: #0069d4;
+}
+
+#custom.pacman {
+    background-color: #3F3F3F;
+    color: #FFFFFF;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+/*----------ANIMATIONS----------*/
+/*workspace when hovered*/
+@keyframes NeonFlickerNonActive {
+
+    /* 0%: Start with your base color */
+    0% {
+        color: #a7a7a7;
+        text-shadow:
+            0 0 1px rgba(207, 207, 207, 0.247),
+            0 0 2px rgba(207, 207, 207, 0.247),
+            0px 0px 3px rgba(207, 207, 207, 0.418);
+    }
+
+    /* 6%: Flicker OFF (Dark) */
+    6% {
+        color: rgb(60, 60, 60);
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+    /* 10%: Flicker ON (Slightly Brighter than base) */
+    10% {
+        color: #dadada;
+        /* Slightly lighter grey for the surge */
+        text-shadow:
+            0 0 3px rgba(207, 207, 207, 0.5),
+            0 0 4px rgba(207, 207, 207, 0.5),
+            0px 0px 6px rgba(207, 207, 207, 0.6);
+    }
+
+    /* 20%: Flicker OFF (Darker) */
+    20% {
+        color: rgb(40, 40, 40);
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+    /* 25%: Flicker ON (Even Brighter) */
+    25% {
+        color: #f0f0f0;
+        /* Almost white */
+        text-shadow:
+            0 0 5px rgba(207, 207, 207, 0.7),
+            0 0 6px rgba(207, 207, 207, 0.7),
+            0px 0px 10px rgba(207, 207, 207, 0.8);
+    }
+
+    /* 35%: Flicker OFF (Dim) */
+    35% {
+        color: rgb(50, 50, 50);
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+    /* 40%: FINAL SURGE (Max Brightness) */
+    40% {
+        color: #ffffff;
+        /* Pure white for the final pop */
+        text-shadow:
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 15px rgba(255, 255, 255, 1),
+            0px 0px 20px rgba(255, 255, 255, 1);
+    }
+
+    /* 100%: Dead (Black) */
+    100% {
+        color: rgb(0, 0, 0);
+        box-shadow: none;
+        text-shadow: none;
+    }
+}
+
+@keyframes NeonFlickerActive {
+    0% {
+        color: rgb(255, 255, 255);
+        text-shadow:
+            0 0 2px rgba(255, 255, 255, 0.781),
+            0 0 3px rgba(255, 255, 255, 0.692),
+            0px 0px 8px rgba(255, 255, 255, 0.904);
+    }
+
+    6% {
+        color: rgb(60, 60, 60);
+        /* Dimmed state */
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+    10% {
+        color: rgb(255, 255, 255);
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.932),
+            0 0 6px rgba(255, 255, 255, 0.692),
+            0px 0px 11px rgba(255, 255, 255, 0.904);
+    }
+
+    20% {
+        color: rgb(40, 40, 40);
+        /* Darker dim */
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+    25% {
+        color: rgb(255, 255, 255);
+        text-shadow:
+            0 0 8px rgba(255, 255, 255, 0.863),
+            0 0 9px rgba(255, 255, 255, 0.801),
+            0px 0px 14px rgba(255, 255, 255, 0.952);
+    }
+
+    35% {
+        color: rgb(50, 50, 50);
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+    40% {
+        color: #ffffff;
+        text-shadow:
+            0 0 20px rgb(255, 255, 255),
+            0 0 21px rgb(255, 255, 255),
+            0px 0px 26px rgb(255, 255, 255);
+    }
+
+    100% {
+        color: rgb(0, 0, 0);
+        /* Fully off */
+        box-shadow: none;
+        text-shadow: none;
+    }
+}
+
+@keyframes NeonFlickerNonActiveBox {
+
+    /* 0%: Start with your base background and shadow */
+    0% {
+        background-color: #a7a7a7;
+        box-shadow:
+            0 0 1px rgba(207, 207, 207, 0.247),
+            0 0 2px rgba(207, 207, 207, 0.247),
+            0px 0px 3px rgba(207, 207, 207, 0.418);
+    }
+
+    /* 6%: Flicker OFF (Dark) */
+    6% {
+        background-color: rgb(60, 60, 60);
+        box-shadow: none;
+    }
+
+    /* 10%: Flicker ON (Slightly Brighter) */
+    10% {
+        background-color: #dadada;
+        box-shadow:
+            0 0 3px rgba(207, 207, 207, 0.5),
+            0 0 4px rgba(207, 207, 207, 0.5),
+            0px 0px 6px rgba(207, 207, 207, 0.6);
+    }
+
+    /* 20%: Flicker OFF (Darker) */
+    20% {
+        background-color: rgb(40, 40, 40);
+        box-shadow: none;
+    }
+
+    /* 25%: Flicker ON (Even Brighter) */
+    25% {
+        background-color: #f0f0f0;
+        box-shadow:
+            0 0 5px rgba(207, 207, 207, 0.7),
+            0 0 6px rgba(207, 207, 207, 0.7),
+            0px 0px 10px rgba(207, 207, 207, 0.8);
+    }
+
+    /* 35%: Flicker OFF (Dim) */
+    35% {
+        background-color: rgb(50, 50, 50);
+        box-shadow: none;
+    }
+
+    /* 40%: FINAL SURGE (Max Brightness White) */
+    40% {
+        background-color: #ffffff;
+        box-shadow:
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 15px rgba(255, 255, 255, 1),
+            0px 0px 20px rgba(255, 255, 255, 1);
+    }
+
+    /* 100%: Dead (Black Box) */
+    100% {
+        background-color: rgb(0, 0, 0);
+        box-shadow: none;
+        text-shadow: none;
+    }
+}

@@ -1,0 +1,13 @@
+#!/bin/bash
+# Sum the total size of all block devices and display it in TiB
+totalStorage=$(df -B1 --total | awk 'END {printf "%.1f TiB", $2/1024/1024/1024/1024}')
+usedStorage=$(df -B1 --total | awk 'END {printf "%.1f TiB", $3/1024/1024/1024/1024}') 
+## df ## 
+#-B1 shows in bytes
+#--total shows total at the end
+## awk ##
+#END means that the awk will be executed after the input ended executing
+#{printf "%.2f TiB", $3/1024/1024/1024/1024}')  makes the $3 (third column) into terabytes by deviding it from bytes down to it. 
+#%.2f means output a float with 2 decimal points
+echo "$usedStorage / $totalStorage "
+

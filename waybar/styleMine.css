@@ -1,0 +1,254 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: 'Asimovian';
+    font-weight: bold;
+    margin: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: transparent;
+    padding: 1rem;
+}
+
+
+#memory,
+#cpu,
+#temperature,
+#network,
+#pulseaudio,
+#mpris,
+#language,
+#clock,
+#custom-disk,
+#custom-VPNstatus,
+#custom-update,
+#custom-gpu,
+#custom-power {
+    font-size: 0.95rem;
+    color: #79566a;
+    background: transparent;
+    padding: 0.4rem 0.9rem;
+    border: 2px solid #3e2c36;
+    transition: ease-in-out 0.2s;
+    margin-top: 8px;
+}
+
+#memory:hover,
+#cpu:hover,
+#temperature:hover,
+#network:hover,
+#pulseaudio:hover,
+#mpris:hover,
+#language:hover,
+#clock:hover,
+#disk:hover,
+#custom-disk:hover,
+#custom-update:hover,
+#custom-VPNstatus:hover {
+    color: #a07a8f;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    transition: ease-in-out 0.3s;
+}
+
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#network.disconnected,
+#pulseaudio.muted,
+#mpris.paused {
+    color: #843a3a;
+    border: 2px solid #531d1d;
+    transition: ease-in-out 0.2s;
+
+}
+
+#memory.critical:hover,
+#cpu.critical:hover,
+#temperature.critical:hover,
+#network.disconnected:hover,
+#pulseaudio.muted:hover,
+#mpris.paused:hover {
+    color: #a74949;
+    border: 2px solid #762a2a;
+    transition: ease-in-out 0.2s;
+}
+
+#workspaces {
+    margin-top: 8px;
+    border: 2px solid #3e2c36;
+}
+
+#workspaces button {
+    font-size: 0.9rem;
+    color: #4d3743;
+    background: transparent;
+    border: none;
+    border-left: none;
+    border-right: none;
+    margin: 0 0.5rem;
+    padding: 0.1rem 0.8rem;
+    transition: ease-in-out 0.15s;
+}
+#workspaces button:first-child{
+    margin-left: 0;
+}
+#workspaces button:last-child{
+    margin-right: 0;
+}
+
+#workspaces button:hover {
+    color: #805c70;
+    text-shadow: none;
+    border: 2px solid transparent;
+    box-shadow: none;
+    font-size: 1rem;
+    transition: ease-in-out 0.15s
+}
+
+#workspaces button.active {
+    font-size: 1.1em;
+    color: #ffe9fc;
+    text-shadow: 0px 0px 6px #ffecf6,
+    -2px -2px 3px #916f81,
+    2px 2px 3px #916f81;
+    border: 2.8px solid #715062;
+    border-left: none;
+    border-right: none;
+    transition: ease-in-out 0.15s
+}
+
+#workspaces button.active:hover {
+    font-size: 1rem;
+    border-left: none;
+    border-right: none;
+    border: 2px solid transparent;
+    transition: ease-in-out 0.15s
+}
+
+
+#pulseaudio {
+    margin-left: 10px;
+}
+
+window.HDMI-A-1 .modules-left {
+    margin-left: 160px;
+}
+
+window.HDMI-A-1 .modules-right {
+    margin-right: 10px;
+}
+
+window.DP-2 .modules-left {
+    margin-left: 10px;
+}
+
+window.DP-2 .modules-right {
+    margin-right: 10px;
+}
+
+
+
+#backlight {
+    background-color: #90b1b1;
+}
+
+#wireplumber {
+    background-color: #fff0f5;
+    color: #000000;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#tray {
+    background-color: #2980b9;
+}
+
+#tray>.passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state>label {
+    padding: 0 5px;
+}
+
+#keyboard-state>label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+    background-color: #0069d4;
+}
+
+#custom.pacman {
+    background-color: #3F3F3F;
+    color: #FFFFFF;
+    padding: 4px 12px;
+    border-radius: 6px;
+}

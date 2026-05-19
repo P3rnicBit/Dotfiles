@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# 1. Get GPU Power (AMD)
+gpu_power_file=$(ls /sys/class/drm/card*/device/hwmon/hwmon*/power1_average 2>/dev/null | head -n 1)
+if [ -f "$gpu_power_file" ]; then
+    # Value is in microwatts, convert to Watts
+    gpu_w=$(awk '{print $1/1000000}' "$gpu_power_file")
+else
+    gpu_w=0
+fi
+
+# 2. Get CPU Power (Ryzen)
+# Note: Path may vary. Looking for 'power1_input' in k10temp or zenpower
+cpu_power_file=$(ls /sys/class/hwmon/hwmon*/power1_input 2>/dev/null | head -n 1)
+if [ -f "$cpu_power_file" ]; then
+    cpu_w=$(awk '{print $1/1000000}' "$cpu_power_file")
+else
+    cpu_w=0
+fi
+
+# Total
+total=$(awk "BEGIN {printf \"%.1f\", $gpu_w + $cpu_w}")
+echo "${total} W"

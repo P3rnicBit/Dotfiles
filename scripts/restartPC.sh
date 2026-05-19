@@ -1,0 +1,2 @@
+cliphist wipe
+reboot

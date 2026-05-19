@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ~/Git/janitor-scraper
+export NGROK_AUTHTOKEN=3DqMvs9jjddrd7DBhH3OZSZL4yt_3ZUSL4ymvda6rbnqAHson
+./janitor-scraper
